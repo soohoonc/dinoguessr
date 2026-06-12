@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { answerHint, isCorrectGuess, pickQuestion } from "./game.js";
 
 const DATA_URL = "/data/dinosaurs.json";
@@ -219,6 +219,7 @@ function StartScreen({
 function GuessForm({
   guess,
   hasAnswered,
+  inputRef,
   isCorrect,
   onChange,
   onSkip,
@@ -237,10 +238,12 @@ function GuessForm({
       <div className="guess-control">
         <input
           autoComplete="off"
+          autoFocus
           disabled={hasAnswered}
           id="guess-input"
           onChange={(event) => onChange(event.target.value)}
           placeholder="e.g. Iguanodon"
+          ref={inputRef}
           spellCheck="false"
           type="text"
           value={guess}
@@ -402,6 +405,7 @@ export default function App() {
   const [round, setRound] = useState(0);
   const [usedAnswerIds, setUsedAnswerIds] = useState([]);
   const [roundHistory, setRoundHistory] = useState([]);
+  const guessInputRef = useRef(null);
 
   useEffect(() => {
     let active = true;
@@ -437,6 +441,11 @@ export default function App() {
     () => (question ? hintItems(question.answer) : []),
     [question]
   );
+
+  useEffect(() => {
+    if (screen !== "playing" || !question || answerResult) return;
+    guessInputRef.current?.focus();
+  }, [answerResult, question, screen]);
 
   function clearAnswerState() {
     setGuess("");
@@ -704,6 +713,7 @@ export default function App() {
               <GuessForm
                 guess={guess}
                 hasAnswered={hasAnswered}
+                inputRef={guessInputRef}
                 isCorrect={isCorrect}
                 onChange={setGuess}
                 onSkip={skipQuestion}
