@@ -59,6 +59,34 @@ function Logo() {
   );
 }
 
+function EnterIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="enter-icon"
+      focusable="false"
+      viewBox="0 0 20 20"
+    >
+      <path
+        d="M14 4v5c0 2-1 3-3 3H5"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+      <path
+        d="m8 8-4 4 4 4"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
+
 function ImageCredits({ dinosaur }) {
   const source = dinosaur.source ?? {};
 
@@ -169,6 +197,8 @@ function StartScreen({
 }
 
 function GuessForm({ guess, hasAnswered, isCorrect, onChange, onSubmit }) {
+  const canGuess = !hasAnswered && Boolean(guess.trim());
+
   return (
     <form
       className={`guess-form ${
@@ -188,8 +218,9 @@ function GuessForm({ guess, hasAnswered, isCorrect, onChange, onSubmit }) {
           type="text"
           value={guess}
         />
-        <button disabled={hasAnswered || !guess.trim()} type="submit">
+        <button disabled={!canGuess} type="submit">
           Guess
+          {canGuess && <EnterIcon />}
         </button>
       </div>
     </form>
@@ -214,12 +245,17 @@ function HintPanel({ hints, revealedHintCount, onRevealHint }) {
       <div className="hint-panel-header">
         <h2>Hints</h2>
         <button
+          aria-label="Reveal hint, Alt H"
           className="hint-button"
           disabled={revealedHintCount >= hints.length}
           onClick={onRevealHint}
           type="button"
         >
-          Hint <span>H</span>
+          Hint{" "}
+          <span className="shortcut-keys" aria-hidden="true">
+            <kbd>Alt</kbd>
+            <kbd>H</kbd>
+          </span>
         </button>
       </div>
       <ol className="hint-list">
@@ -375,15 +411,38 @@ export default function App() {
         tagName === "input" ||
         tagName === "textarea" ||
         target?.isContentEditable;
+      const shouldLetFocusedControlHandleEnter =
+        tagName === "a" ||
+        tagName === "summary" ||
+        (tagName === "button" && !target.disabled);
+      const isHintShortcut =
+        event.altKey &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        event.key.toLowerCase() === "h";
 
-      if (isTyping || event.key.toLowerCase() !== "h") return;
+      if (event.key === "Enter") {
+        if (
+          !submittedGuess ||
+          isTyping ||
+          shouldLetFocusedControlHandleEnter ||
+          event.repeat
+        ) {
+          return;
+        }
+        event.preventDefault();
+        nextQuestion();
+        return;
+      }
+
+      if (!isHintShortcut) return;
       event.preventDefault();
       revealHint();
     }
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentHints.length, question, screen]);
+  }, [currentHints.length, question, screen, submittedGuess]);
 
   if (error) {
     return (
@@ -505,6 +564,7 @@ export default function App() {
                   type="button"
                 >
                   {isModeComplete ? "End game" : "Next"}
+                  {hasAnswered && <EnterIcon />}
                 </button>
               </div>
             </section>
