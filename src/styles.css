@@ -103,7 +103,7 @@ a {
   outline: none;
 }
 
-.external-icon {
+.github-icon {
   width: 1em;
   height: 1em;
   flex: 0 0 auto;
@@ -202,7 +202,7 @@ a {
 
 .topbar {
   margin-bottom: 18px;
-  padding: 10px 4px 0;
+  padding: 24px 4px 0;
 }
 
 .wordmark {
@@ -286,7 +286,10 @@ a {
 }
 
 .topbar .wordmark-mark {
-  display: none;
+  display: block;
+  top: -18px;
+  width: 30px;
+  height: 30px;
 }
 
 .topbar .wordmark h1 {
