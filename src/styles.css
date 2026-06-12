@@ -204,9 +204,14 @@ a {
 }
 
 .results-header {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  gap: 12px;
   padding-top: 74px;
   padding-bottom: 18px;
-  border-bottom: 2px solid rgba(243, 183, 47, 0.46);
+  border-bottom: 3px solid rgba(243, 183, 47, 0.66);
+  text-align: center;
 }
 
 .topbar {
@@ -451,7 +456,7 @@ a {
 
 .results-score {
   display: grid;
-  justify-items: end;
+  justify-items: center;
   gap: 2px;
   color: var(--amber);
   font-size: 0.86rem;
@@ -471,8 +476,9 @@ a {
 .results-meta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 0;
 }
 
 .results-meta span {
@@ -805,6 +811,23 @@ a {
   text-transform: uppercase;
 }
 
+.missed-section.perfect-section {
+  justify-items: center;
+  padding: 18px 0 4px;
+}
+
+.missed-section.perfect-section h2 {
+  color: var(--bone);
+  font-family:
+    Anton, Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(2.3rem, 8vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-shadow:
+    1px 1px 0 var(--danger),
+    3px 3px 0 #080705;
+}
+
 .missed-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -857,15 +880,10 @@ a {
   line-height: 1;
 }
 
-.missed-card span,
-.perfect-copy {
+.missed-card span {
   color: var(--muted);
   font-size: 0.84rem;
   font-weight: 700;
-}
-
-.perfect-copy {
-  margin: 0;
 }
 
 .results-actions {

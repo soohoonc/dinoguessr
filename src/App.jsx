@@ -180,7 +180,8 @@ function StartScreen({
   mode,
   onChangeDifficulty,
   onChangeMode,
-  onStart
+  onStart,
+  startButtonRef
 }) {
   return (
     <main className="app setup-app">
@@ -204,9 +205,11 @@ function StartScreen({
         </div>
 
         <button
+          autoFocus
           className="start-button"
           data-action="start"
           onClick={onStart}
+          ref={startButtonRef}
           type="button"
         >
           Start
@@ -315,10 +318,13 @@ function ResultsScreen({
   history,
   onPlayAgain,
   onSetup,
+  changeModeRef,
+  playAgainRef,
   score
 }) {
   const total = history.length;
   const missed = history.filter((entry) => !entry.correct);
+  const isPerfect = total > 0 && missed.length === 0;
   const visibleMisses = missed.slice(0, 10);
   const remainingMisses = missed.length - visibleMisses.length;
   const roundTotal =
@@ -338,18 +344,21 @@ function ResultsScreen({
               {score}/{roundTotal}
             </strong>
           </div>
+
+          <div className="results-meta">
+            <span>
+              {DIFFICULTIES.find((option) => option.id === difficulty)?.label}
+            </span>
+            <span>{activeMode.label}</span>
+            <span>{total} rounds</span>
+          </div>
         </header>
 
-        <div className="results-meta">
-          <span>
-            {DIFFICULTIES.find((option) => option.id === difficulty)?.label}
-          </span>
-          <span>{activeMode.label}</span>
-          <span>{total} rounds</span>
-        </div>
-
-        <section className="missed-section" aria-label="Missed dinosaurs">
-          <h2>{missed.length ? "Missed" : "Perfect"}</h2>
+        <section
+          className={`missed-section ${isPerfect ? "perfect-section" : ""}`}
+          aria-label={isPerfect ? "Perfect score" : "Missed dinosaurs"}
+        >
+          <h2>{isPerfect ? "Perfect" : "Missed"}</h2>
           {missed.length ? (
             <ol className="missed-list">
               {visibleMisses.map((entry) => (
@@ -372,16 +381,27 @@ function ResultsScreen({
                 </li>
               )}
             </ol>
-          ) : (
-            <p className="perfect-copy">No misses.</p>
-          )}
+          ) : null}
         </section>
 
         <div className="results-actions">
-          <button className="start-button" onClick={onPlayAgain} type="button">
+          <button
+            autoFocus
+            className="start-button"
+            data-results-action="play-again"
+            onClick={onPlayAgain}
+            ref={playAgainRef}
+            type="button"
+          >
             Play again
           </button>
-          <button className="secondary-button" onClick={onSetup} type="button">
+          <button
+            className="secondary-button"
+            data-results-action="setup"
+            onClick={onSetup}
+            ref={changeModeRef}
+            type="button"
+          >
             Change mode
           </button>
         </div>
@@ -405,7 +425,10 @@ export default function App() {
   const [round, setRound] = useState(0);
   const [usedAnswerIds, setUsedAnswerIds] = useState([]);
   const [roundHistory, setRoundHistory] = useState([]);
+  const changeModeButtonRef = useRef(null);
   const guessInputRef = useRef(null);
+  const playAgainButtonRef = useRef(null);
+  const startButtonRef = useRef(null);
 
   useEffect(() => {
     let active = true;
@@ -446,6 +469,16 @@ export default function App() {
     if (screen !== "playing" || !question || answerResult) return;
     guessInputRef.current?.focus();
   }, [answerResult, question, screen]);
+
+  useEffect(() => {
+    if (screen !== "setup" || !payload) return;
+    startButtonRef.current?.focus();
+  }, [payload, screen]);
+
+  useEffect(() => {
+    if (screen !== "results") return;
+    playAgainButtonRef.current?.focus();
+  }, [roundHistory.length, screen]);
 
   function clearAnswerState() {
     setGuess("");
@@ -559,6 +592,74 @@ export default function App() {
   }
 
   useEffect(() => {
+    if (screen !== "setup" && screen !== "results") return undefined;
+
+    function handleSetupResultsKeyDown(event) {
+      if (
+        (event.key !== "Enter" && event.key !== "Tab") ||
+        event.repeat ||
+        event.defaultPrevented
+      ) {
+        return;
+      }
+
+      const target = event.target;
+      const tagName = target?.tagName?.toLowerCase();
+      const isTyping =
+        tagName === "input" ||
+        tagName === "textarea" ||
+        target?.isContentEditable;
+
+      if (isTyping || tagName === "a" || tagName === "summary") return;
+
+      if (screen === "results" && event.key === "Tab") {
+        const resultAction = target?.dataset?.resultsAction;
+
+        if (!event.shiftKey && resultAction === "play-again") {
+          event.preventDefault();
+          changeModeButtonRef.current?.focus();
+          return;
+        }
+
+        if (event.shiftKey && resultAction === "setup") {
+          event.preventDefault();
+          playAgainButtonRef.current?.focus();
+        }
+
+        return;
+      }
+
+      if (event.key !== "Enter") return;
+
+      if (screen === "setup") {
+        if (tagName === "button" && target?.dataset?.action !== "start") {
+          return;
+        }
+
+        event.preventDefault();
+        startGame();
+        return;
+      }
+
+      const resultAction = target?.dataset?.resultsAction;
+      if (tagName === "button" && resultAction === "setup") {
+        event.preventDefault();
+        returnToSetup();
+        return;
+      }
+
+      if (tagName === "button" && resultAction !== "play-again") return;
+
+      event.preventDefault();
+      startGame();
+    }
+
+    window.addEventListener("keydown", handleSetupResultsKeyDown);
+    return () =>
+      window.removeEventListener("keydown", handleSetupResultsKeyDown);
+  }, [payload, questionPool, screen]);
+
+  useEffect(() => {
     if (screen !== "playing" || !question) return undefined;
 
     function handleKeyDown(event) {
@@ -633,6 +734,7 @@ export default function App() {
         onChangeDifficulty={setDifficulty}
         onChangeMode={setMode}
         onStart={startGame}
+        startButtonRef={startButtonRef}
       />
     );
   }
@@ -643,8 +745,10 @@ export default function App() {
         activeMode={activeMode}
         difficulty={difficulty}
         history={roundHistory}
+        changeModeRef={changeModeButtonRef}
         onPlayAgain={startGame}
         onSetup={returnToSetup}
+        playAgainRef={playAgainButtonRef}
         score={score}
       />
     );
