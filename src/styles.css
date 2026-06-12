@@ -80,32 +80,25 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  min-height: 36px;
-  padding: 7px 11px;
-  border: 1px solid rgba(243, 183, 47, 0.55);
-  border-radius: 6px;
-  background: rgba(8, 7, 5, 0.82);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--amber-bright);
-  font-size: 0.82rem;
-  font-weight: 800;
   line-height: 1;
   text-decoration: none;
-  text-transform: uppercase;
-  backdrop-filter: blur(8px);
 }
 
 .github-link:hover,
 .github-link:focus-visible {
-  border-color: var(--amber);
-  background: rgba(18, 13, 8, 0.95);
   color: var(--bone);
   outline: none;
 }
 
 .github-icon {
-  width: 1em;
-  height: 1em;
+  width: 24px;
+  height: 24px;
   flex: 0 0 auto;
 }
 
@@ -452,7 +445,6 @@ a {
   line-height: 1;
 }
 
-.end-game-button,
 .hint-button {
   border: 0;
   background: transparent;
@@ -464,8 +456,31 @@ a {
   text-transform: uppercase;
 }
 
+.end-game-button {
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 2px solid var(--amber);
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), transparent 42%),
+    var(--danger);
+  color: var(--bone);
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .end-game-button:hover,
-.end-game-button:focus-visible,
+.end-game-button:focus-visible {
+  border-color: var(--amber-bright);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.13), transparent 42%),
+    var(--danger-hot);
+  outline: none;
+}
+
 .hint-button:hover,
 .hint-button:focus-visible {
   color: var(--danger-hot);

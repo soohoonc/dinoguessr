@@ -96,13 +96,13 @@ function GitHubIcon() {
 function GitHubLink() {
   return (
     <a
+      aria-label="GitHub repository"
       className="github-link"
       href="https://github.com/soohoonc/dinoguessr"
       rel="noreferrer"
       target="_blank"
     >
       <GitHubIcon />
-      GitHub
     </a>
   );
 }
@@ -517,12 +517,10 @@ export default function App() {
           <Logo />
           <div className="stats" aria-label="Game stats">
             <span>
-              <strong>{score}</strong>
-              Score
+              Score: <strong>{score}</strong>
             </span>
             <span>
-              <strong>{roundLabel}</strong>
-              Round
+              Round: <strong>{roundLabel}</strong>
             </span>
             <button
               className="end-game-button"
