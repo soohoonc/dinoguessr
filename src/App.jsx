@@ -216,7 +216,14 @@ function StartScreen({
   );
 }
 
-function GuessForm({ guess, hasAnswered, isCorrect, onChange, onSubmit }) {
+function GuessForm({
+  guess,
+  hasAnswered,
+  isCorrect,
+  onChange,
+  onSkip,
+  onSubmit
+}) {
   const canGuess = !hasAnswered && Boolean(guess.trim());
 
   return (
@@ -241,6 +248,14 @@ function GuessForm({ guess, hasAnswered, isCorrect, onChange, onSubmit }) {
         <button disabled={!canGuess} type="submit">
           Guess
           {canGuess && <EnterIcon />}
+        </button>
+        <button
+          className="skip-button"
+          disabled={hasAnswered}
+          onClick={onSkip}
+          type="button"
+        >
+          Skip
         </button>
       </div>
     </form>
@@ -291,6 +306,87 @@ function HintPanel({ hints, revealedHintCount, onRevealHint }) {
   );
 }
 
+function ResultsScreen({
+  activeMode,
+  difficulty,
+  history,
+  onPlayAgain,
+  onSetup,
+  score
+}) {
+  const total = history.length;
+  const missed = history.filter((entry) => !entry.correct);
+  const visibleMisses = missed.slice(0, 10);
+  const remainingMisses = missed.length - visibleMisses.length;
+  const roundTotal =
+    activeMode.roundLimit && total >= activeMode.roundLimit
+      ? activeMode.roundLimit
+      : total;
+
+  return (
+    <main className="app results-app">
+      <GitHubLink />
+      <section className="results-shell" aria-label="Game results">
+        <header className="results-header">
+          <Logo />
+          <div className="results-score" aria-label="Final score">
+            <span>Score</span>
+            <strong>
+              {score}/{roundTotal}
+            </strong>
+          </div>
+        </header>
+
+        <div className="results-meta">
+          <span>
+            {DIFFICULTIES.find((option) => option.id === difficulty)?.label}
+          </span>
+          <span>{activeMode.label}</span>
+          <span>{total} rounds</span>
+        </div>
+
+        <section className="missed-section" aria-label="Missed dinosaurs">
+          <h2>{missed.length ? "Missed" : "Perfect"}</h2>
+          {missed.length ? (
+            <ol className="missed-list">
+              {visibleMisses.map((entry) => (
+                <li className="missed-card" key={`${entry.id}-${entry.round}`}>
+                  <img src={entry.imageUrl} alt="" />
+                  <div>
+                    <strong>{entry.name}</strong>
+                    <span>
+                      {entry.skipped ? "Skipped" : `Guessed ${entry.guess}`}
+                    </span>
+                  </div>
+                </li>
+              ))}
+              {remainingMisses > 0 && (
+                <li className="missed-card more-misses">
+                  <div>
+                    <strong>+{remainingMisses} more</strong>
+                    <span>Missed in Zen</span>
+                  </div>
+                </li>
+              )}
+            </ol>
+          ) : (
+            <p className="perfect-copy">No misses.</p>
+          )}
+        </section>
+
+        <div className="results-actions">
+          <button className="start-button" onClick={onPlayAgain} type="button">
+            Play again
+          </button>
+          <button className="secondary-button" onClick={onSetup} type="button">
+            Change mode
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 export default function App() {
   const [payload, setPayload] = useState(null);
   const [error, setError] = useState("");
@@ -299,12 +395,13 @@ export default function App() {
   const [difficulty, setDifficulty] = useState("easy");
   const [mode, setMode] = useState("normal");
   const [guess, setGuess] = useState("");
-  const [submittedGuess, setSubmittedGuess] = useState("");
+  const [answerResult, setAnswerResult] = useState(null);
   const [revealedHintCount, setRevealedHintCount] = useState(0);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [round, setRound] = useState(0);
   const [usedAnswerIds, setUsedAnswerIds] = useState([]);
+  const [roundHistory, setRoundHistory] = useState([]);
 
   useEffect(() => {
     let active = true;
@@ -343,7 +440,7 @@ export default function App() {
 
   function clearAnswerState() {
     setGuess("");
-    setSubmittedGuess("");
+    setAnswerResult(null);
     setRevealedHintCount(0);
   }
 
@@ -352,6 +449,7 @@ export default function App() {
     setStreak(0);
     setRound(0);
     setUsedAnswerIds([]);
+    setRoundHistory([]);
     clearAnswerState();
   }
 
@@ -369,36 +467,71 @@ export default function App() {
     clearAnswerState();
   }
 
+  function showResults() {
+    setScreen("results");
+    setQuestion(null);
+    clearAnswerState();
+  }
+
+  function endGame() {
+    if (roundHistory.length > 0) {
+      showResults();
+      return;
+    }
+
+    returnToSetup();
+  }
+
   function revealHint() {
     setRevealedHintCount((value) => Math.min(value + 1, currentHints.length));
   }
 
-  function recordAnswer(correct) {
-    if (question) {
-      setUsedAnswerIds((ids) =>
-        ids.includes(question.answer.id) ? ids : [...ids, question.answer.id]
-      );
-    }
+  function recordAnswer({ correct, guess: recordedGuess = "", skipped }) {
+    if (!question) return;
+
+    const answer = question.answer;
+    const entry = {
+      correct,
+      guess: recordedGuess,
+      id: answer.id,
+      imageUrl: answer.imageUrl,
+      name: answer.name,
+      round: round + 1,
+      skipped
+    };
+
+    setUsedAnswerIds((ids) =>
+      ids.includes(answer.id) ? ids : [...ids, answer.id]
+    );
     setRound((value) => value + 1);
     setScore((value) => value + (correct ? 1 : 0));
     setStreak((value) => (correct ? value + 1 : 0));
+    setRoundHistory((history) => [...history, entry]);
   }
 
   function submitGuess(event) {
     event.preventDefault();
-    if (!question || submittedGuess) return;
+    if (!question || answerResult) return;
 
     const cleanGuess = guess.trim();
     if (!cleanGuess) return;
 
     const correct = isCorrectGuess(cleanGuess, question.answer);
-    setSubmittedGuess(cleanGuess);
-    recordAnswer(correct);
+    setAnswerResult({ correct, guess: cleanGuess, skipped: false });
+    recordAnswer({ correct, guess: cleanGuess, skipped: false });
+  }
+
+  function skipQuestion() {
+    if (!question || answerResult) return;
+
+    setGuess("");
+    setAnswerResult({ correct: false, guess: "", skipped: true });
+    recordAnswer({ correct: false, skipped: true });
   }
 
   function nextQuestion() {
     if (activeMode.roundLimit && round >= activeMode.roundLimit) {
-      returnToSetup();
+      showResults();
       return;
     }
 
@@ -438,7 +571,7 @@ export default function App() {
 
       if (event.key === "Enter") {
         if (
-          !submittedGuess ||
+          !answerResult ||
           isTyping ||
           shouldLetFocusedControlHandleEnter ||
           event.repeat
@@ -457,7 +590,7 @@ export default function App() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentHints.length, question, screen, submittedGuess]);
+  }, [currentHints.length, question, screen, answerResult]);
 
   if (error) {
     return (
@@ -495,11 +628,23 @@ export default function App() {
     );
   }
 
+  if (screen === "results") {
+    return (
+      <ResultsScreen
+        activeMode={activeMode}
+        difficulty={difficulty}
+        history={roundHistory}
+        onPlayAgain={startGame}
+        onSetup={returnToSetup}
+        score={score}
+      />
+    );
+  }
+
   if (!question) return null;
 
-  const hasAnswered = submittedGuess !== "";
-  const isCorrect =
-    hasAnswered && isCorrectGuess(submittedGuess, question.answer);
+  const hasAnswered = Boolean(answerResult);
+  const isCorrect = Boolean(answerResult?.correct);
   const isModeComplete =
     hasAnswered &&
     Boolean(activeMode.roundLimit) &&
@@ -524,7 +669,7 @@ export default function App() {
             </span>
             <button
               className="end-game-button"
-              onClick={returnToSetup}
+              onClick={endGame}
               type="button"
             >
               End game
@@ -561,6 +706,7 @@ export default function App() {
                 hasAnswered={hasAnswered}
                 isCorrect={isCorrect}
                 onChange={setGuess}
+                onSkip={skipQuestion}
                 onSubmit={submitGuess}
               />
 
@@ -569,6 +715,8 @@ export default function App() {
                   {hasAnswered
                     ? isCorrect
                       ? "Correct."
+                      : answerResult?.skipped
+                        ? `Skipped. It was ${question.answer.name}.`
                       : `It was ${question.answer.name}.`
                     : " "}
                 </p>
@@ -578,7 +726,7 @@ export default function App() {
                   onClick={nextQuestion}
                   type="button"
                 >
-                  {isModeComplete ? "End game" : "Next"}
+                  {isModeComplete ? "Results" : "Next"}
                   {hasAnswered && <EnterIcon />}
                 </button>
               </div>

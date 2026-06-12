@@ -116,7 +116,8 @@ a {
 }
 
 .setup-shell,
-.empty-state {
+.empty-state,
+.results-shell {
   position: relative;
   overflow: hidden;
   border: 2px solid var(--amber);
@@ -135,14 +136,21 @@ a {
   padding: 24px;
 }
 
+.results-shell {
+  width: min(680px, 100%);
+  padding: 24px;
+}
+
 .setup-shell > *,
-.empty-state > * {
+.empty-state > *,
+.results-shell > * {
   position: relative;
   z-index: 1;
 }
 
 .setup-shell::before,
-.empty-state::before {
+.empty-state::before,
+.results-shell::before {
   position: absolute;
   top: 0;
   right: 0;
@@ -153,7 +161,8 @@ a {
 }
 
 .setup-shell::after,
-.empty-state::after {
+.empty-state::after,
+.results-shell::after {
   position: absolute;
   inset: 0;
   background:
@@ -175,6 +184,7 @@ a {
 }
 
 .setup-header,
+.results-header,
 .topbar {
   display: flex;
   align-items: center;
@@ -191,6 +201,12 @@ a {
   padding-top: 74px;
   padding-bottom: 18px;
   border-bottom: 2px solid rgba(243, 183, 47, 0.58);
+}
+
+.results-header {
+  padding-top: 74px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid rgba(243, 183, 47, 0.46);
 }
 
 .topbar {
@@ -411,6 +427,63 @@ a {
   font-size: 1.34rem;
   font-weight: 400;
   letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.secondary-button {
+  min-height: 52px;
+  border: 2px solid rgba(243, 183, 47, 0.5);
+  border-radius: 6px;
+  background: #0a0907;
+  color: var(--amber-bright);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.secondary-button:hover,
+.secondary-button:focus-visible {
+  border-color: var(--amber);
+  color: var(--bone);
+  outline: none;
+}
+
+.results-score {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  color: var(--amber);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.results-score strong {
+  color: var(--bone);
+  font-family:
+    Anton, Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(2.4rem, 8vw, 4.4rem);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.results-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.results-meta span {
+  padding: 4px 8px;
+  border: 1px solid rgba(243, 183, 47, 0.38);
+  border-radius: 4px;
+  background: rgba(8, 7, 5, 0.72);
+  color: var(--amber-bright);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1;
   text-transform: uppercase;
 }
 
@@ -652,7 +725,7 @@ a {
 
 .guess-control {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 8px;
 }
 
@@ -697,11 +770,113 @@ a {
   text-transform: uppercase;
 }
 
+.guess-control .skip-button {
+  min-width: 64px;
+  border-color: rgba(243, 183, 47, 0.42);
+  background: #0a0907;
+  color: var(--amber-bright);
+}
+
+.guess-control .skip-button:hover,
+.guess-control .skip-button:focus-visible {
+  border-color: var(--amber);
+  color: var(--bone);
+  outline: none;
+}
+
 .guess-control button:disabled {
   border-color: rgba(185, 157, 104, 0.4);
   background: #37312b;
   color: rgba(245, 231, 196, 0.62);
   cursor: default;
+}
+
+.missed-section {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.missed-section h2 {
+  margin: 0;
+  color: var(--amber-bright);
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.missed-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.missed-card {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid rgba(243, 183, 47, 0.32);
+  border-radius: 6px;
+  background: rgba(8, 7, 5, 0.74);
+}
+
+.missed-card img {
+  width: 54px;
+  height: 42px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.missed-card div {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.missed-card.more-misses {
+  grid-template-columns: 1fr;
+  min-height: 58px;
+}
+
+.missed-card strong,
+.missed-card span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.missed-card strong {
+  color: var(--bone);
+  font-size: 0.98rem;
+  line-height: 1;
+}
+
+.missed-card span,
+.perfect-copy {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.perfect-copy {
+  margin: 0;
+}
+
+.results-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.results-actions .start-button {
+  margin-top: 0;
 }
 
 .guess-form.correct input {
@@ -784,8 +959,22 @@ a {
     padding: 16px;
   }
 
+  .results-shell {
+    padding: 16px;
+  }
+
   .topbar {
     align-items: flex-start;
+  }
+
+  .results-header {
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+  }
+
+  .results-score {
+    justify-items: center;
   }
 
   .stats {
@@ -843,12 +1032,18 @@ a {
   }
 
   .guess-control,
-  .result-row {
+  .result-row,
+  .results-actions {
     grid-template-columns: 1fr;
   }
 
   .next-button,
-  .guess-control button {
+  .guess-control button,
+  .secondary-button {
     width: 100%;
+  }
+
+  .missed-list {
+    grid-template-columns: 1fr;
   }
 }

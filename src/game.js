@@ -54,11 +54,48 @@ export function normalizeGuess(value) {
     .replace(/[^a-z0-9]/g, "");
 }
 
+const COMMON_ALIASES = {
+  Allosaurus: ["Allo"],
+  Ankylosaurus: ["Ankylo"],
+  Archaeopteryx: ["Archeopteryx", "Archae"],
+  Brachiosaurus: ["Brachio"],
+  Carnotaurus: ["Carno"],
+  Carcharodontosaurus: ["Carcharo"],
+  Compsognathus: ["Compy", "Compsognathus longipes"],
+  Deinonychus: ["Deino"],
+  Dilophosaurus: ["Dilo"],
+  Diplodocus: ["Diplo"],
+  Giganotosaurus: ["Giga", "Giganoto"],
+  Pachycephalosaurus: ["Pachy"],
+  Parasaurolophus: ["Para", "Parasaur"],
+  Spinosaurus: ["Spino"],
+  Stegosaurus: ["Stego"],
+  Triceratops: ["Trike"],
+  Tyrannosaurus: [
+    "Tyrannosaurus rex",
+    "T. rex",
+    "T rex",
+    "T-rex",
+    "Trex"
+  ],
+  Velociraptor: ["Raptor", "Veloci raptor"]
+};
+
 export function answerNames(dinosaur) {
   const names = new Set([dinosaur.name, dinosaur.taxonomy?.genus]);
   const firstNamePart = dinosaur.name?.split(/\s+/).at(0);
   if (firstNamePart && dinosaur.name.includes(" ")) {
     names.add(firstNamePart);
+  }
+
+  const species = dinosaur.taxonomy?.species?.trim();
+  const speciesName = species?.match(/^[A-Z]\.\s+(.+)$/)?.at(1);
+  if (speciesName && dinosaur.taxonomy?.genus) {
+    names.add(`${dinosaur.taxonomy.genus} ${speciesName}`);
+  }
+
+  for (const alias of COMMON_ALIASES[dinosaur.name] ?? []) {
+    names.add(alias);
   }
 
   return Array.from(names).filter(Boolean);
