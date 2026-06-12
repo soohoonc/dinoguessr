@@ -14,6 +14,7 @@ const GAME_MODES = [
   { id: "zen", label: "Zen", meta: "Endless", roundLimit: null }
 ];
 const TOTAL_HINTS = 3;
+const HINT_SHORTCUT_LABEL = "?";
 
 function shouldMaskImage(dinosaur) {
   return MASKED_IMAGE_PATTERN.test(
@@ -264,7 +265,7 @@ function HintPanel({ hints, revealedHintCount, onRevealHint }) {
       <div className="hint-panel-header">
         <h2>Hints</h2>
         <button
-          aria-label="Reveal hint, Alt H"
+          aria-label="Reveal hint, question mark"
           className="hint-button"
           disabled={revealedHintCount >= hints.length}
           onClick={onRevealHint}
@@ -272,8 +273,7 @@ function HintPanel({ hints, revealedHintCount, onRevealHint }) {
         >
           Hint{" "}
           <span className="shortcut-keys" aria-hidden="true">
-            <kbd>Alt</kbd>
-            <kbd>H</kbd>
+            <kbd>{HINT_SHORTCUT_LABEL}</kbd>
           </span>
         </button>
       </div>
@@ -431,10 +431,10 @@ export default function App() {
         tagName === "summary" ||
         (tagName === "button" && !target.disabled);
       const isHintShortcut =
-        event.altKey &&
+        !event.altKey &&
         !event.ctrlKey &&
         !event.metaKey &&
-        event.key.toLowerCase() === "h";
+        event.key === HINT_SHORTCUT_LABEL;
 
       if (event.key === "Enter") {
         if (
