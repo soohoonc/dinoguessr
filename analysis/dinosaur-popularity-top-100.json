@@ -1,0 +1,802 @@
+[
+  {
+    "rank": 1,
+    "name": "Tyrannosaurus",
+    "score": 1177951,
+    "pageviews": 182951,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/tyrannosaurus-rex_21e8.jpg"
+  },
+  {
+    "rank": 2,
+    "name": "Stegosaurus",
+    "score": 1043277,
+    "pageviews": 63277,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Stegosaurus/Stegosaurus_42a22ae9.jpg"
+  },
+  {
+    "rank": 3,
+    "name": "Brachiosaurus",
+    "score": 1017089,
+    "pageviews": 47089,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Brachiosaurus/Brachiosaurus_c9eb8de4.jpg"
+  },
+  {
+    "rank": 4,
+    "name": "Allosaurus",
+    "score": 1010277,
+    "pageviews": 50277,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Allosaurus/Allosaurus_f614bc6d.jpg"
+  },
+  {
+    "rank": 5,
+    "name": "Velociraptor",
+    "score": 990000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Velociraptor/Velociraptor_41a51641.jpg"
+  },
+  {
+    "rank": 6,
+    "name": "Triceratops",
+    "score": 985000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Triceratops/Triceratops_932bd8e6.jpg"
+  },
+  {
+    "rank": 7,
+    "name": "Spinosaurus",
+    "score": 975000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Spinosaurus/Spinosaurus_8b26fbe0.jpg"
+  },
+  {
+    "rank": 8,
+    "name": "Ankylosaurus",
+    "score": 965000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Ankylosaurus/Ankylosaurus_775883a1.jpg"
+  },
+  {
+    "rank": 9,
+    "name": "Carnotaurus",
+    "score": 963217,
+    "pageviews": 38217,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Carnotaurus/Carnotaurus_fc889e5e.jpg"
+  },
+  {
+    "rank": 10,
+    "name": "Iguanodon",
+    "score": 960827,
+    "pageviews": 25827,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Iguanodon/Iguanodon_8767aceb.jpg"
+  },
+  {
+    "rank": 11,
+    "name": "Diplodocus",
+    "score": 955000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Diplodocus/Diplodocus_1f4392bc.jpg"
+  },
+  {
+    "rank": 12,
+    "name": "Apatosaurus",
+    "score": 950000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Apatosaurus/Apatosaurus_b18ed95c.jpg"
+  },
+  {
+    "rank": 13,
+    "name": "Brontosaurus",
+    "score": 945000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Brontosaurus/Brontosaurus_9cb76323.jpg"
+  },
+  {
+    "rank": 14,
+    "name": "Parasaurolophus",
+    "score": 940000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Parasaurolophus/Parasaurolophus_c540a3ef.jpg"
+  },
+  {
+    "rank": 15,
+    "name": "Giganotosaurus",
+    "score": 935631,
+    "pageviews": 45631,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Giganotosaurus/Giganotosaurus_4e5a241f.jpg"
+  },
+  {
+    "rank": 16,
+    "name": "Pachycephalosaurus",
+    "score": 930000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Pachycephalosaurus/Pachycephalosaurus_e206f071.jpg"
+  },
+  {
+    "rank": 17,
+    "name": "Gallimimus",
+    "score": 920589,
+    "pageviews": 10589,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Gallimimus/Gallimimus_7f6b8306.jpg"
+  },
+  {
+    "rank": 18,
+    "name": "Dilophosaurus",
+    "score": 920000,
+    "pageviews": 0,
+    "tier": "easy",
+    "imageUrl": "https://images.dinosaurpictures.org/Dilophosaurus/Dilophosaurus_c7406166.jpg"
+  },
+  {
+    "rank": 19,
+    "name": "Deinonychus",
+    "score": 915000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Deinonychus/Deinonychus_a075aed6.jpg"
+  },
+  {
+    "rank": 20,
+    "name": "Utahraptor",
+    "score": 912197,
+    "pageviews": 37197,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Utahraptor/Utahraptor_624ac6e3.jpg"
+  },
+  {
+    "rank": 21,
+    "name": "Carcharodontosaurus",
+    "score": 906034,
+    "pageviews": 21034,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Carcharodontosaurus/Carcharodontosaurus_87686283.jpg"
+  },
+  {
+    "rank": 22,
+    "name": "Compsognathus",
+    "score": 905000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Compsognathus/Compsognathus_06897092.jpg"
+  },
+  {
+    "rank": 23,
+    "name": "Archaeopteryx",
+    "score": 904574,
+    "pageviews": 59574,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Archaeopteryx/Archaeopteryx_6cee6a9f.jpg"
+  },
+  {
+    "rank": 24,
+    "name": "Therizinosaurus",
+    "score": 895000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Therizinosaurus/Therizinosaurus_995f089b.jpg"
+  },
+  {
+    "rank": 25,
+    "name": "Argentinosaurus",
+    "score": 880000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Argentinosaurus/Argentinosaurus_ad12c32f.jpg"
+  },
+  {
+    "rank": 26,
+    "name": "Corythosaurus",
+    "score": 871682,
+    "pageviews": 6682,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Corythosaurus/Corythosaurus_4e870a70.jpg"
+  },
+  {
+    "rank": 27,
+    "name": "Edmontosaurus",
+    "score": 870000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Edmontosaurus/Edmontosaurus_805c3dde.jpg"
+  },
+  {
+    "rank": 28,
+    "name": "Hadrosaurus",
+    "score": 860000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Hadrosaurus/Hadrosaurus_fbb99690.jpg"
+  },
+  {
+    "rank": 29,
+    "name": "Plateosaurus",
+    "score": 845199,
+    "pageviews": 10199,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Plateosaurus/Plateosaurus_e9c1d2a7.jpg"
+  },
+  {
+    "rank": 30,
+    "name": "Maiasaura",
+    "score": 840000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Maiasaura/Maiasaura_26d876ad.jpg"
+  },
+  {
+    "rank": 31,
+    "name": "Coelophysis",
+    "score": 830000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Coelophysis/Coelophysis_ccc1c681.jpg"
+  },
+  {
+    "rank": 32,
+    "name": "Baryonyx",
+    "score": 825000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Baryonyx/Baryonyx_1d654e90.jpg"
+  },
+  {
+    "rank": 33,
+    "name": "Albertosaurus",
+    "score": 822855,
+    "pageviews": 12855,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Albertosaurus/Albertosaurus_0b39f0df.jpg"
+  },
+  {
+    "rank": 34,
+    "name": "Suchomimus",
+    "score": 820000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Suchomimus/Suchomimus_9cead7ec.jpg"
+  },
+  {
+    "rank": 35,
+    "name": "Ceratosaurus",
+    "score": 815000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Ceratosaurus/Ceratosaurus_96215005.jpg"
+  },
+  {
+    "rank": 36,
+    "name": "Daspletosaurus",
+    "score": 805000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Daspletosaurus/Daspletosaurus_2039d36d.jpg"
+  },
+  {
+    "rank": 37,
+    "name": "Tarbosaurus",
+    "score": 800000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Tarbosaurus/Tarbosaurus_49303ebc.jpg"
+  },
+  {
+    "rank": 38,
+    "name": "Yutyrannus",
+    "score": 795000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Yutyrannus/Yutyrannus_539e328f.jpg"
+  },
+  {
+    "rank": 39,
+    "name": "Oviraptor",
+    "score": 790000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Oviraptor/Oviraptor_8847108e.jpg"
+  },
+  {
+    "rank": 40,
+    "name": "Citipati",
+    "score": 788092,
+    "pageviews": 3092,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Citipati/Citipati_34da0556.jpg"
+  },
+  {
+    "rank": 41,
+    "name": "Protoceratops",
+    "score": 786034,
+    "pageviews": 11034,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Protoceratops/Protoceratops_2178ebac.jpg"
+  },
+  {
+    "rank": 42,
+    "name": "Microraptor",
+    "score": 780000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Microraptor/Microraptor_056ddc5f.jpg"
+  },
+  {
+    "rank": 43,
+    "name": "Centrosaurus",
+    "score": 770047,
+    "pageviews": 5047,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Centrosaurus/Centrosaurus_080d6f3a.jpg"
+  },
+  {
+    "rank": 44,
+    "name": "Styracosaurus",
+    "score": 770000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Styracosaurus/Styracosaurus_2f8a90b9.jpg"
+  },
+  {
+    "rank": 45,
+    "name": "Chasmosaurus",
+    "score": 760000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Chasmosaurus/Chasmosaurus_27224344.jpg"
+  },
+  {
+    "rank": 46,
+    "name": "Torosaurus",
+    "score": 755000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Torosaurus/Torosaurus_89ff3752.jpg"
+  },
+  {
+    "rank": 47,
+    "name": "Pachyrhinosaurus",
+    "score": 750000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Pachyrhinosaurus/Pachyrhinosaurus_bfc827d8.jpg"
+  },
+  {
+    "rank": 48,
+    "name": "Lambeosaurus",
+    "score": 746260,
+    "pageviews": 6260,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Lambeosaurus/Lambeosaurus_1b35eb64.jpg"
+  },
+  {
+    "rank": 49,
+    "name": "Saurolophus",
+    "score": 745000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Saurolophus/Saurolophus_7844595a.jpg"
+  },
+  {
+    "rank": 50,
+    "name": "Ouranosaurus",
+    "score": 739882,
+    "pageviews": 4882,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Ouranosaurus/Ouranosaurus_14b47f51.jpg"
+  },
+  {
+    "rank": 51,
+    "name": "Mamenchisaurus",
+    "score": 730000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Mamenchisaurus/Mamenchisaurus_924481c3.jpg"
+  },
+  {
+    "rank": 52,
+    "name": "Dreadnoughtus",
+    "score": 727711,
+    "pageviews": 12711,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Dreadnoughtus/Dreadnoughtus_07abd30e.jpg"
+  },
+  {
+    "rank": 53,
+    "name": "Camarasaurus",
+    "score": 725000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Camarasaurus/Camarasaurus_dddedc7f.jpg"
+  },
+  {
+    "rank": 54,
+    "name": "Acrocanthosaurus",
+    "score": 721805,
+    "pageviews": 16805,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Acrocanthosaurus/Acrocanthosaurus_134d71e6.jpg"
+  },
+  {
+    "rank": 55,
+    "name": "Amargasaurus",
+    "score": 720000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Amargasaurus/Amargasaurus_9ca3228a.jpg"
+  },
+  {
+    "rank": 56,
+    "name": "Patagotitan",
+    "score": 710000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Patagotitan/Patagotitan_5b72e1ec.jpg"
+  },
+  {
+    "rank": 57,
+    "name": "Cryolophosaurus",
+    "score": 700000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Cryolophosaurus/Cryolophosaurus_9dfa5823.jpg"
+  },
+  {
+    "rank": 58,
+    "name": "Monolophosaurus",
+    "score": 695000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Monolophosaurus/Monolophosaurus_cff07fcf.jpg"
+  },
+  {
+    "rank": 59,
+    "name": "Herrerasaurus",
+    "score": 693942,
+    "pageviews": 13942,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Herrerasaurus/Herrerasaurus_3ce72ecf.jpg"
+  },
+  {
+    "rank": 60,
+    "name": "Eoraptor",
+    "score": 692645,
+    "pageviews": 7645,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Eoraptor/Eoraptor_ea2bccc4.jpg"
+  },
+  {
+    "rank": 61,
+    "name": "Concavenator",
+    "score": 690000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Concavenator/Concavenator_ad5d424c.jpg"
+  },
+  {
+    "rank": 62,
+    "name": "Ornithomimus",
+    "score": 675000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Ornithomimus/Ornithomimus_6d03fbbe.jpg"
+  },
+  {
+    "rank": 63,
+    "name": "Struthiomimus",
+    "score": 670000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Struthiomimus/Struthiomimus_612cbc74.jpg"
+  },
+  {
+    "rank": 64,
+    "name": "Pelecanimimus",
+    "score": 666559,
+    "pageviews": 1559,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Pelecanimimus/Pelecanimimus_1fc96afd.jpg"
+  },
+  {
+    "rank": 65,
+    "name": "Hypsilophodon",
+    "score": 650000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Hypsilophodon/Hypsilophodon_bdfff378.jpg"
+  },
+  {
+    "rank": 66,
+    "name": "Dryosaurus",
+    "score": 645000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Dryosaurus/Dryosaurus_07ecd182.jpg"
+  },
+  {
+    "rank": 67,
+    "name": "Kentrosaurus",
+    "score": 640000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Kentrosaurus/Kentrosaurus_da0ff720.jpg"
+  },
+  {
+    "rank": 68,
+    "name": "Polacanthus",
+    "score": 635000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Polacanthus/Polacanthus_d3bfb1ae.jpg"
+  },
+  {
+    "rank": 69,
+    "name": "Nodosaurus",
+    "score": 630000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Nodosaurus/Nodosaurus_9a1a47cf.jpg"
+  },
+  {
+    "rank": 70,
+    "name": "Minmi",
+    "score": 625000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Minmi/Minmi_e20c62fa.jpg"
+  },
+  {
+    "rank": 71,
+    "name": "Megalosaurus",
+    "score": 623472,
+    "pageviews": 23472,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Megalosaurus/Megalosaurus_a909b917.jpg"
+  },
+  {
+    "rank": 72,
+    "name": "Sauropelta",
+    "score": 620000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Sauropelta/Sauropelta_32c76fe1.jpg"
+  },
+  {
+    "rank": 73,
+    "name": "Euoplocephalus",
+    "score": 619815,
+    "pageviews": 4815,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Euoplocephalus/Euoplocephalus_6807d049.jpg"
+  },
+  {
+    "rank": 74,
+    "name": "Shantungosaurus",
+    "score": 610000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Shantungosaurus/Shantungosaurus_97f28162.jpg"
+  },
+  {
+    "rank": 75,
+    "name": "Tenontosaurus",
+    "score": 609759,
+    "pageviews": 4759,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Tenontosaurus/Tenontosaurus_b46f5065.jpg"
+  },
+  {
+    "rank": 76,
+    "name": "Nigersaurus",
+    "score": 602899,
+    "pageviews": 27899,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Nigersaurus/Nigersaurus_8f125793.jpg"
+  },
+  {
+    "rank": 77,
+    "name": "Majungasaurus",
+    "score": 595133,
+    "pageviews": 10133,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Majungasaurus/Majungasaurus_a5a2d1db.jpg"
+  },
+  {
+    "rank": 78,
+    "name": "Mapusaurus",
+    "score": 595000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Mapusaurus/Mapusaurus_68817d76.jpg"
+  },
+  {
+    "rank": 79,
+    "name": "Rugops",
+    "score": 593450,
+    "pageviews": 3450,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Rugops/Rugops_29891994.jpg"
+  },
+  {
+    "rank": 80,
+    "name": "Psittacosaurus",
+    "score": 581775,
+    "pageviews": 11775,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Psittacosaurus/Psittacosaurus_67a734a2.jpg"
+  },
+  {
+    "rank": 81,
+    "name": "Masiakasaurus",
+    "score": 580000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Masiakasaurus/Masiakasaurus_161d73a0.jpg"
+  },
+  {
+    "rank": 82,
+    "name": "Leaellynasaura",
+    "score": 565000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Leaellynasaura/Leaellynasaura_e49df31d.jpg"
+  },
+  {
+    "rank": 83,
+    "name": "Muttaburrasaurus",
+    "score": 560000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Muttaburrasaurus/Muttaburrasaurus_0d25c629.jpg"
+  },
+  {
+    "rank": 84,
+    "name": "Australovenator",
+    "score": 555000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Australovenator/Australovenator_907ee00e.jpg"
+  },
+  {
+    "rank": 85,
+    "name": "Qianzhousaurus",
+    "score": 550000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Qianzhousaurus/Qianzhousaurus_5a115fba.jpg"
+  },
+  {
+    "rank": 86,
+    "name": "Sinoceratops",
+    "score": 545000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Sinoceratops/Sinoceratops_b9f93852.jpg"
+  },
+  {
+    "rank": 87,
+    "name": "Kosmoceratops",
+    "score": 540000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Kosmoceratops/Kosmoceratops_b7d1d4bc.jpg"
+  },
+  {
+    "rank": 88,
+    "name": "Diabloceratops",
+    "score": 535000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Diabloceratops/Diabloceratops_8a355ff9.jpg"
+  },
+  {
+    "rank": 89,
+    "name": "Nasutoceratops",
+    "score": 530000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Nasutoceratops/Nasutoceratops_f4028474.jpg"
+  },
+  {
+    "rank": 90,
+    "name": "Regaliceratops",
+    "score": 525000,
+    "pageviews": 0,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Regaliceratops/Regaliceratops_65600668.jpg"
+  },
+  {
+    "rank": 91,
+    "name": "Achelousaurus",
+    "score": 90257,
+    "pageviews": 90257,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Achelousaurus/Achelousaurus_4220c2ae.jpg"
+  },
+  {
+    "rank": 92,
+    "name": "Borealopelta",
+    "score": 20083,
+    "pageviews": 20083,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Borealopelta/Borealopelta_830403d6.jpg"
+  },
+  {
+    "rank": 93,
+    "name": "Nanotyrannus",
+    "score": 14953,
+    "pageviews": 14953,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Nanotyrannus/Nanotyrannus_e704e2a2.jpg"
+  },
+  {
+    "rank": 94,
+    "name": "Deinocheirus",
+    "score": 13260,
+    "pageviews": 13260,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Deinocheirus/Deinocheirus_8a41b64c.jpg"
+  },
+  {
+    "rank": 95,
+    "name": "Sinosauropteryx",
+    "score": 10698,
+    "pageviews": 10698,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Sinosauropteryx/Sinosauropteryx_8244dbfc.jpg"
+  },
+  {
+    "rank": 96,
+    "name": "Sauroposeidon",
+    "score": 10115,
+    "pageviews": 10115,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Sauroposeidon/Sauroposeidon_019a4f5d.jpg"
+  },
+  {
+    "rank": 97,
+    "name": "Maip",
+    "score": 9911,
+    "pageviews": 9911,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Maip/Maip_93a4c9b0.jpg"
+  },
+  {
+    "rank": 98,
+    "name": "Saurophaganax",
+    "score": 8681,
+    "pageviews": 8681,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Saurophaganax/Saurophaganax_b649a149.jpg"
+  },
+  {
+    "rank": 99,
+    "name": "Tyrannotitan",
+    "score": 8647,
+    "pageviews": 8647,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Tyrannotitan/Tyrannotitan_b3e3417c.jpg"
+  },
+  {
+    "rank": 100,
+    "name": "Shri",
+    "score": 7991,
+    "pageviews": 7991,
+    "tier": "medium",
+    "imageUrl": "https://images.dinosaurpictures.org/Shri/Shri_085a8531.jpg"
+  }
+]

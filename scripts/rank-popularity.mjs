@@ -4,6 +4,9 @@ const DATA_FILE = new URL("../public/data/dinosaurs.json", import.meta.url);
 const BATCH_SIZE = 20;
 const BATCH_DELAY_MS = 3600;
 const USER_AGENT = "dinoguessr-popularity-builder/1.0";
+const EASY_RANK_LIMIT = 18;
+const MEDIUM_RANK_LIMIT = 106;
+const HARD_RANK_LIMIT = 256;
 const CURATED_POPULARITY = [
   "Tyrannosaurus",
   "Velociraptor",
@@ -185,13 +188,19 @@ async function fetchBatch(records) {
   }
 }
 
-function tierForRank(rank, total) {
-  const easyLimit = Math.ceil(total * 0.16);
-  const mediumLimit = Math.ceil(total * 0.5);
+function tierForRank(rank) {
+  if (rank <= EASY_RANK_LIMIT) return "easy";
+  if (rank <= MEDIUM_RANK_LIMIT) return "medium";
+  if (rank <= HARD_RANK_LIMIT) return "hard";
+  return null;
+}
 
-  if (rank <= easyLimit) return "easy";
-  if (rank <= mediumLimit) return "medium";
-  return "hard";
+function popularityTierDescription(total) {
+  const easyLimit = Math.min(EASY_RANK_LIMIT, total);
+  const mediumLimit = Math.min(MEDIUM_RANK_LIMIT, total);
+  const hardLimit = Math.min(HARD_RANK_LIMIT, total);
+
+  return `Easy is ranks 1-${easyLimit}, Medium is ranks ${easyLimit + 1}-${mediumLimit}, Hard is ranks ${mediumLimit + 1}-${hardLimit}. Ranks after ${hardLimit} are ranked for audit but not assigned to a playable difficulty.`;
 }
 
 async function main() {
@@ -251,7 +260,7 @@ async function main() {
         rank: index + 1,
         pageviews: record.pageviews,
         score: record.score,
-        tier: tierForRank(index + 1, ranked.length),
+        tier: tierForRank(index + 1),
         sourceTitle: record.sourceTitle
       }
     ])
@@ -261,8 +270,7 @@ async function main() {
     ...payload.meta,
     popularityGeneratedAt: new Date().toISOString(),
     popularitySource: source,
-    popularityTiers:
-      "Easy is the top 16% by popularity score, Medium is the next 34%, Hard is the rest."
+    popularityTiers: popularityTierDescription(ranked.length)
   };
   payload.dinosaurs = dinosaurs.map((record) => ({
     ...record,
