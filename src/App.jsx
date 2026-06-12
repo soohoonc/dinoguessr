@@ -77,6 +77,40 @@ function EnterIcon() {
   );
 }
 
+function ExternalLinkIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="external-icon"
+      focusable="false"
+      viewBox="0 0 20 20"
+    >
+      <path
+        d="M7 5h8v8M15 5 6 14"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
+
+function GitHubLink() {
+  return (
+    <a
+      className="github-link"
+      href="https://github.com/soohoonc/dinoguessr"
+      rel="noreferrer"
+      target="_blank"
+    >
+      GitHub
+      <ExternalLinkIcon />
+    </a>
+  );
+}
+
 function ImageCredits({ dinosaur }) {
   const source = dinosaur.source ?? {};
 
@@ -145,7 +179,6 @@ function ModeSelector({ mode, onChange }) {
 }
 
 function StartScreen({
-  countLabel,
   difficulty,
   mode,
   onChangeDifficulty,
@@ -154,10 +187,10 @@ function StartScreen({
 }) {
   return (
     <main className="app setup-app">
+      <GitHubLink />
       <section className="setup-shell" aria-label="Dinoguessr setup">
         <header className="setup-header">
           <Logo />
-          <p>{countLabel} dinosaurs</p>
         </header>
 
         <div className="setup-section">
@@ -299,10 +332,6 @@ export default function App() {
   }, []);
 
   const dinosaurs = payload?.dinosaurs ?? [];
-  const countLabel = useMemo(
-    () => (payload?.meta?.count ? payload.meta.count.toLocaleString() : ""),
-    [payload]
-  );
   const activeMode = useMemo(
     () => GAME_MODES.find((option) => option.id === mode) ?? GAME_MODES[0],
     [mode]
@@ -437,6 +466,7 @@ export default function App() {
   if (error) {
     return (
       <main className="app">
+        <GitHubLink />
         <section className="empty-state">
           <h1>Dinoguessr</h1>
           <p>{error}</p>
@@ -448,6 +478,7 @@ export default function App() {
   if (!payload) {
     return (
       <main className="app">
+        <GitHubLink />
         <section className="empty-state">
           <h1>Dinoguessr</h1>
           <p>Loading dinosaur records.</p>
@@ -459,7 +490,6 @@ export default function App() {
   if (screen === "setup") {
     return (
       <StartScreen
-        countLabel={countLabel}
         difficulty={difficulty}
         mode={mode}
         onChangeDifficulty={setDifficulty}
@@ -485,6 +515,7 @@ export default function App() {
 
   return (
     <main className="app playing-app">
+      <GitHubLink />
       <section className="game-shell" aria-label="Dinoguessr game">
         <header className="topbar">
           <Logo />
