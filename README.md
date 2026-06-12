@@ -9,9 +9,8 @@ A minimal dinosaur guessing game. Pick a popularity difficulty and mode first, t
 - `Hard` uses the most obscure dinosaurs.
 - `Normal` is a 10-question run.
 - `Zen` is endless random play.
-- `Browse` walks through the selected dinosaur list in order.
 - All difficulties use type-in answers with typo tolerance.
-- Each round has four sequential hints. Press `H` or the hint button to reveal them; diet is intentionally excluded.
+- Each round has three sequential hints: lived, family, then name. Press `H` or the hint button to reveal them.
 
 ## Data
 

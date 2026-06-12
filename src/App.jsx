@@ -11,10 +11,9 @@ const DIFFICULTIES = [
 ];
 const GAME_MODES = [
   { id: "normal", label: "Normal", meta: "10 questions", roundLimit: 10 },
-  { id: "zen", label: "Zen", meta: "Endless", roundLimit: null },
-  { id: "browse", label: "Browse", meta: "Dinosaur list", roundLimit: null }
+  { id: "zen", label: "Zen", meta: "Endless", roundLimit: null }
 ];
-const TOTAL_HINTS = 4;
+const TOTAL_HINTS = 3;
 
 function shouldMaskImage(dinosaur) {
   return MASKED_IMAGE_PATTERN.test(
@@ -197,47 +196,16 @@ function GuessForm({ guess, hasAnswered, isCorrect, onChange, onSubmit }) {
   );
 }
 
-function cleanDescriptionHint(dinosaur) {
-  const names = [dinosaur.name, dinosaur.taxonomy?.genus].filter(Boolean);
-  let description = dinosaur.description ?? "";
-
-  for (const name of names) {
-    description = description.replaceAll(new RegExp(name, "gi"), "this dinosaur");
-  }
-
-  return description
-    .replace(/\([^)]*\)/g, "")
-    .replace(/\[[^\]]*\]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 function hintItems(dinosaur) {
-  const facts = (dinosaur.facts ?? []).filter((fact) => {
-    const lower = fact.toLowerCase();
-    return !lower.startsWith("diet") && !lower.startsWith("locomotion");
-  });
-  const items = [`Name: ${answerHint(dinosaur)}`, ...facts];
-  const family = dinosaur.taxonomy?.family;
-  const clades = dinosaur.taxonomy?.clades ?? [];
+  const lived =
+    (dinosaur.facts ?? []).find((fact) => /^Lived:/i.test(fact)) ??
+    "Lived: Unknown";
+  const family = dinosaur.taxonomy?.family?.trim() || "Unclassified";
 
-  if (family && !items.some((item) => item.includes(family))) {
-    items.push(`Family: ${family}`);
-  }
-
-  if (clades.length > 2) {
-    const group = clades.slice(1, 4).join(" / ");
-    if (!items.some((item) => item.includes(group))) {
-      items.push(`Group: ${group}`);
-    }
-  }
-
-  const description = cleanDescriptionHint(dinosaur);
-  if (description) {
-    items.push(`Detail: ${description}`);
-  }
-
-  return Array.from(new Set(items)).slice(0, TOTAL_HINTS);
+  return [lived, `Family: ${family}`, `Name: ${answerHint(dinosaur)}`].slice(
+    0,
+    TOTAL_HINTS
+  );
 }
 
 function HintPanel({ hints, revealedHintCount, onRevealHint }) {
@@ -281,7 +249,6 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [round, setRound] = useState(0);
-  const [browseIndex, setBrowseIndex] = useState(0);
   const [usedAnswerIds, setUsedAnswerIds] = useState([]);
 
   useEffect(() => {
@@ -333,7 +300,6 @@ export default function App() {
     setScore(0);
     setStreak(0);
     setRound(0);
-    setBrowseIndex(0);
     setUsedAnswerIds([]);
     clearAnswerState();
   }
@@ -342,18 +308,13 @@ export default function App() {
     if (!questionPool.length) return;
 
     resetScore();
-    setQuestion(
-      activeMode.id === "browse"
-        ? pickQuestion([questionPool[0]])
-        : pickQuestion(questionPool)
-    );
+    setQuestion(pickQuestion(questionPool));
     setScreen("playing");
   }
 
   function returnToSetup() {
     setScreen("setup");
     setQuestion(null);
-    setBrowseIndex(0);
     clearAnswerState();
   }
 
@@ -385,19 +346,6 @@ export default function App() {
   }
 
   function nextQuestion() {
-    if (activeMode.id === "browse") {
-      if (!questionPool.length) {
-        returnToSetup();
-        return;
-      }
-
-      const nextIndex = (browseIndex + 1) % questionPool.length;
-      setBrowseIndex(nextIndex);
-      setQuestion(pickQuestion([questionPool[nextIndex]]));
-      clearAnswerState();
-      return;
-    }
-
     if (activeMode.roundLimit && round >= activeMode.roundLimit) {
       returnToSetup();
       return;
@@ -482,12 +430,9 @@ export default function App() {
     Boolean(activeMode.roundLimit) &&
     round >= activeMode.roundLimit;
   const currentRoundNumber = hasAnswered ? round : round + 1;
-  const roundLabel =
-    activeMode.id === "browse"
-      ? `${Math.min(browseIndex + 1, questionPool.length)}/${questionPool.length}`
-      : activeMode.roundLimit
-        ? `${Math.min(currentRoundNumber, activeMode.roundLimit)}/${activeMode.roundLimit}`
-        : `${currentRoundNumber}`;
+  const roundLabel = activeMode.roundLimit
+    ? `${Math.min(currentRoundNumber, activeMode.roundLimit)}/${activeMode.roundLimit}`
+    : `${currentRoundNumber}`;
 
   return (
     <main className="app playing-app">
