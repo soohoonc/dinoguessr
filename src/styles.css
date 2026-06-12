@@ -199,23 +199,13 @@ a {
   transform: translateX(-50%);
 }
 
-.wordmark::after {
-  position: absolute;
-  right: 10px;
-  bottom: -7px;
-  left: 10px;
-  height: 5px;
-  background: var(--danger);
-  content: "";
-}
-
 .wordmark-mark {
   position: absolute;
   z-index: 1;
-  top: -50px;
+  top: -59px;
   left: 50%;
-  width: 84px;
-  height: 52px;
+  width: 88px;
+  height: 88px;
   flex: 0 0 auto;
   color: #060504;
   filter: drop-shadow(0 2px 0 rgba(255, 209, 93, 0.25));
@@ -262,17 +252,10 @@ a {
     inset 0 0 0 3px #080705;
 }
 
-.topbar .wordmark::after {
-  right: 8px;
-  bottom: -5px;
-  left: 8px;
-  height: 4px;
-}
-
 .topbar .wordmark-mark {
-  top: -21px;
+  top: -28px;
   width: 42px;
-  height: 28px;
+  height: 42px;
 }
 
 .topbar .wordmark h1 {
@@ -781,8 +764,8 @@ a {
   }
 
   .wordmark-mark {
-    width: 30px;
-    height: 30px;
+    width: 74px;
+    height: 74px;
   }
 
   .stats {
