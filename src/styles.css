@@ -207,11 +207,36 @@ a {
   display: grid;
   justify-content: center;
   justify-items: center;
-  gap: 12px;
+  gap: 14px;
   padding-top: 74px;
   padding-bottom: 18px;
   border-bottom: 3px solid rgba(243, 183, 47, 0.66);
   text-align: center;
+}
+
+.results-header .wordmark {
+  margin-bottom: 18px;
+  padding: 8px 18px 7px;
+}
+
+.results-header .wordmark::before {
+  top: -58px;
+  width: 148px;
+  height: 120px;
+  border-width: 7px;
+  box-shadow:
+    0 0 0 6px #080705,
+    inset 0 0 0 4px #080705;
+}
+
+.results-header .wordmark-mark {
+  top: -45px;
+  width: 52px;
+  height: 52px;
+}
+
+.results-header .wordmark h1 {
+  font-size: clamp(1.9rem, 5vw, 3.25rem);
 }
 
 .topbar {
