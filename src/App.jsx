@@ -14,7 +14,6 @@ const GAME_MODES = [
   { id: "zen", label: "Zen", meta: "Endless", roundLimit: null }
 ];
 const TOTAL_HINTS = 3;
-const HINT_SHORTCUT_LABEL = "?";
 
 function shouldMaskImage(dinosaur) {
   return MASKED_IMAGE_PATTERN.test(
@@ -133,6 +132,14 @@ function ImageCredits({ dinosaur }) {
       </div>
     </details>
   );
+}
+
+function ImageFact({ dinosaur }) {
+  const fact = dinosaur.defaultHint?.trim();
+
+  if (!fact) return null;
+
+  return <figcaption className="image-fact">{fact}</figcaption>;
 }
 
 function DifficultySelector({ difficulty, onChange }) {
@@ -262,6 +269,11 @@ function GuessForm({
           type="button"
         >
           Skip
+          {!hasAnswered && (
+            <kbd className="button-shortcut" aria-hidden="true">
+              Esc
+            </kbd>
+          )}
         </button>
       </div>
     </form>
@@ -292,10 +304,7 @@ function HintPanel({ hints, revealedHintCount, onRevealHint }) {
           onClick={onRevealHint}
           type="button"
         >
-          Hint{" "}
-          <span className="shortcut-keys" aria-hidden="true">
-            <kbd>{HINT_SHORTCUT_LABEL}</kbd>
-          </span>
+          Hint
         </button>
       </div>
       <ol className="hint-list">
@@ -673,11 +682,6 @@ export default function App() {
         tagName === "a" ||
         tagName === "summary" ||
         (tagName === "button" && !target.disabled);
-      const isHintShortcut =
-        !event.altKey &&
-        !event.ctrlKey &&
-        !event.metaKey &&
-        event.key === HINT_SHORTCUT_LABEL;
 
       if (event.key === "Enter") {
         if (
@@ -693,14 +697,15 @@ export default function App() {
         return;
       }
 
-      if (!isHintShortcut) return;
-      event.preventDefault();
-      revealHint();
+      if (event.key === "Escape" && !answerResult && !event.repeat) {
+        event.preventDefault();
+        skipQuestion();
+      }
     }
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentHints.length, question, screen, answerResult]);
+  }, [question, screen, answerResult]);
 
   if (error) {
     return (
@@ -804,15 +809,18 @@ export default function App() {
                   : "Dinosaur clue image"
               }
             />
+            <ImageFact dinosaur={question.answer} />
             <ImageCredits dinosaur={question.answer} />
           </figure>
 
-          <section className="bottom-panel">
+          <section className="bottom-panel without-hints">
+            {/*
             <HintPanel
               hints={currentHints}
               onRevealHint={revealHint}
               revealedHintCount={revealedHintCount}
             />
+            */}
             <section className="answer-panel" aria-label="Answer">
               <GuessForm
                 guess={guess}
